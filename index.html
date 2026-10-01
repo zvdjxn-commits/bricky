@@ -52,3 +52,158 @@ var tc=new TON_CONNECT_UI.TonConnectUI({manifestUrl:'https://zvdjxn-commits.gith
 tc.onStatusChange(function(wl){ws.textContent=wl?'کیف پول وصل شد ✓':''});
 }catch(x){}
 </script></body></html>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>بریکی</title>
+<style>
+:root{--bg:#1f1710;--fg:#fbeedd;--mut:#b9a58f;--card:#2d2218;--acc:#FF7A45;--trac:#3a2c20}
+html,body{height:100%;margin:0}
+body{box-sizing:border-box;background:var(--bg);color:var(--fg);font-family:system-ui,Tahoma,sans-serif;text-align:center;padding-top:env(safe-area-inset-top,0px);overflow:hidden}
+h1{font-size:20px;margin:6px 0;font-weight:500}
+.pg{display:none;height:calc(100% - 72px - env(safe-area-inset-bottom,0px));overflow-y:auto;padding:8px 16px;box-sizing:border-box}
+.pg.on{display:block}
+.m{color:var(--mut);font-size:14px}
+#s{font-size:48px;font-weight:500;line-height:1}
+#w{position:relative;width:240px;height:220px;margin:10px auto}
+#b{all:unset;cursor:pointer;display:block;width:240px;height:220px;-webkit-tap-highlight-color:transparent}
+#b:active{transform:scale(.92)}
+.f{position:absolute;font-size:24px;font-weight:500;color:var(--acc);pointer-events:none;animation:up .8s forwards}
+@keyframes up{to{transform:translateY(-80px);opacity:0}}
+.t{width:240px;height:14px;background:var(--trac);border-radius:7px;margin:8px auto;overflow:hidden}
+#e{height:100%;width:100%;background:var(--acc);border-radius:7px}
+.c{background:var(--card);border-radius:14px;padding:14px;margin:10px 0;text-align:right}
+.c b{font-weight:500}
+.bt{all:unset;cursor:pointer;display:inline-block;background:var(--acc);color:#1f1710;border-radius:10px;padding:8px 16px;font-size:14px;margin-top:8px}
+.bt.off{opacity:.4}
+#ton-connect{min-height:44px;direction:ltr;margin:14px 0}
+#nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);padding-bottom:env(safe-area-inset-bottom,0px)}
+#nav button{all:unset;cursor:pointer;flex:1;padding:10px 0;font-size:12px;color:var(--mut);text-align:center;-webkit-tap-highlight-color:transparent}
+#nav button span{display:block;font-size:22px}
+#nav button.on{color:var(--acc)}
+</style></head><body>
+
+<div class="pg on" id="p0">
+  <h1>بریکی</h1>
+  <div><div id="s">0</div><div class="m">آجر</div></div>
+  <div id="w"><button id="b" aria-label="تپ">
+    <svg viewBox="0 0 240 220" width="240" height="220">
+      <rect x="45" y="30" width="40" height="46" rx="8" fill="#E8622C"/>
+      <rect x="100" y="30" width="40" height="46" rx="8" fill="#E8622C"/>
+      <rect x="155" y="30" width="40" height="46" rx="8" fill="#E8622C"/>
+      <rect x="20" y="66" width="200" height="134" rx="26" fill="#FF7A45" stroke="#C24F1F" stroke-width="4"/>
+      <rect x="24" y="170" width="192" height="28" rx="14" fill="#E8622C"/>
+      <circle cx="90" cy="112" r="18" fill="#2b2b2b"/><circle cx="97" cy="105" r="5" fill="#fff"/>
+      <circle cx="150" cy="112" r="18" fill="#2b2b2b"/><circle cx="157" cy="105" r="5" fill="#fff"/>
+      <ellipse cx="62" cy="136" rx="16" ry="9" fill="#ffa0b4"/>
+      <ellipse cx="178" cy="136" rx="16" ry="9" fill="#ffa0b4"/>
+      <path d="M105 134 Q120 150 135 134" fill="none" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round"/>
+    </svg></button></div>
+  <div class="t"><div id="e"></div></div>
+  <div class="m">انرژی: <span id="et"></span></div>
+</div>
+
+<div class="pg" id="p1">
+  <h1>ارتقا</h1>
+  <div class="m">موجودی: <span id="s1"></span> آجر</div>
+  <div class="c"><b>قدرت کلیک</b><div class="m">هر تپ آجر بیشتری می‌دهد. سطح <span id="lp"></span></div>
+    <button class="bt" id="bp"></button></div>
+  <div class="c"><b>سرعت پر شدن انرژی</b><div class="m">انرژی سریع‌تر پر می‌شود. سطح <span id="lr"></span></div>
+    <button class="bt" id="br"></button></div>
+  <div class="c"><b>ربات کلیک خودکار</b><div class="m">تا ۳ ساعت برایت آجر جمع می‌کند. بعد از آن باید برداشت کنی.</div>
+    <div id="botinfo" class="m"></div>
+    <button class="bt" id="bb"></button></div>
+</div>
+
+<div class="pg" id="p2">
+  <h1>دوستان</h1>
+  <div class="c"><b>کد دعوت تو</b>
+    <div id="code" style="font-size:28px;margin:8px 0;direction:ltr;text-align:center"></div>
+    <div class="m">این کد را به دوستانت بده تا با کد تو وارد بازی شوند.</div>
+    <button class="bt" id="cp">کپی کد</button></div>
+  <div class="c"><b>زیرمجموعه‌ها</b><div class="m">فعلاً ۰ نفر. شمارش و پاداش دعوت در مرحله‌ی بعد اضافه می‌شود.</div></div>
+</div>
+
+<div class="pg" id="p3">
+  <h1>کیف پول</h1>
+  <div id="ton-connect"></div>
+  <div class="m" id="ws"></div>
+  <div class="c"><b>به‌زودی</b><div class="m">برداشت و تبدیل آجر به توکن در نسخه‌های بعدی اضافه می‌شود.</div></div>
+</div>
+
+<div id="nav">
+  <button class="on" data-p="0"><span>🧱</span>بازی</button>
+  <button data-p="1"><span>⚡</span>ارتقا</button>
+  <button data-p="2"><span>👥</span>دوستان</button>
+  <button data-p="3"><span>👛</span>کیف پول</button>
+</div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+<script>
+try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(x){}
+var D={s:0,p:1,r:1,bot:0,bt:0},M=100,e=100,BOT_MAX=10800;
+try{
+  var o=JSON.parse(localStorage.getItem('bricky_v2'));
+  if(o){D=Object.assign(D,o)}else{D.s=+localStorage.getItem('bricky_s')||0}
+}catch(x){}
+function $(i){return document.getElementById(i)}
+function fa(n){return Math.floor(n).toLocaleString('fa-IR')}
+function save(){try{localStorage.setItem('bricky_v2',JSON.stringify(D));localStorage.setItem('bricky_s',D.s)}catch(x){}}
+function costP(){return 100*Math.pow(2,D.p-1)}
+function costR(){return 150*Math.pow(2,D.r-1)}
+var COST_BOT=2000;
+function botCoins(){return D.bot?Math.min((Date.now()-D.bt)/1000,BOT_MAX):0}
+
+function render(){
+  $('s').textContent=fa(D.s);$('s1').textContent=fa(D.s);
+  $('e').style.width=(e/M*100)+'%';$('et').textContent=fa(e)+' / '+fa(M);
+  $('lp').textContent=fa(D.p);$('lr').textContent=fa(D.r);
+  $('bp').textContent='ارتقا: '+fa(costP())+' آجر';$('bp').className='bt'+(D.s<costP()?' off':'');
+  $('br').textContent='ارتقا: '+fa(costR())+' آجر';$('br').className='bt'+(D.s<costR()?' off':'');
+  if(D.bot){
+    var c=botCoins();
+    $('botinfo').textContent='آماده برداشت: '+fa(c)+' آجر'+(c>=BOT_MAX?' (پر شد)':'');
+    $('bb').textContent='برداشت';$('bb').className='bt'+(c<1?' off':'');
+  }else{
+    $('botinfo').textContent='';
+    $('bb').textContent='خرید: '+fa(COST_BOT)+' آجر';$('bb').className='bt'+(D.s<COST_BOT?' off':'');
+  }
+}
+
+$('b').addEventListener('pointerdown',function(ev){
+  if(e<1)return;e--;D.s+=D.p;save();render();
+  var w=$('w'),p=w.getBoundingClientRect(),f=document.createElement('div');
+  f.className='f';f.textContent='+'+fa(D.p);
+  f.style.left=(ev.clientX-p.left)+'px';f.style.top=(ev.clientY-p.top)+'px';
+  w.appendChild(f);f.addEventListener('animationend',function(){f.remove()});
+});
+
+$('bp').onclick=function(){if(D.s<costP())return;D.s-=costP();D.p++;save();render()};
+$('br').onclick=function(){if(D.s<costR())return;D.s-=costR();D.r++;save();render()};
+$('bb').onclick=function(){
+  if(!D.bot){if(D.s<COST_BOT)return;D.s-=COST_BOT;D.bot=1;D.bt=Date.now()}
+  else{var c=Math.floor(botCoins());if(c<1)return;D.s+=c;D.bt=Date.now()}
+  save();render();
+};
+
+var uid;try{uid=Telegram.WebApp.initDataUnsafe.user.id}catch(x){}
+if(!uid){try{uid=localStorage.getItem('bricky_uid');if(!uid){uid=Math.floor(Math.random()*9e6+1e6);localStorage.setItem('bricky_uid',uid)}}catch(x){uid=1000000}}
+$('code').textContent='B'+uid;
+$('cp').onclick=function(){try{navigator.clipboard.writeText('B'+uid);$('cp').textContent='کپی شد'}catch(x){}};
+
+var tabs=document.querySelectorAll('#nav button');
+tabs.forEach(function(t){t.onclick=function(){
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on')});
+  tabs.forEach(function(x){x.classList.remove('on')});
+  $('p'+t.dataset.p).classList.add('on');t.classList.add('on');render();
+}});
+
+setInterval(function(){if(e<M){e=Math.min(M,e+D.r)}render()},1000);
+render();
+
+try{
+  var tc=new TON_CONNECT_UI.TonConnectUI({manifestUrl:'https://zvdjxn-commits.github.io/bricky/tonconnect-manifest.json',buttonRootId:'ton-connect'});
+  tc.onStatusChange(function(wl){$('ws').textContent=wl?'✓ کیف پول وصل شد':''});
+}catch(x){}
+</script></body></html>
