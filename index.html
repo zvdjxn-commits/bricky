@@ -54,7 +54,7 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
 <div class="pg" id="p1">
   <h1>ارتقا</h1>
   <div class="m">موجودی: <span id="s1"></span> آجر</div>
-  <div class="c"><b>قدرت کلیک</b><div class="m">سطح <span id="lp"></span> — هر تپ <span id="pp"></span> آجر</div>
+  <div class="c"><b>قدرت کلیک</b><div class="m">سطح <span id="lp"></span> — هر تپ <span id="pp"></span> آجر و <span id="pe"></span> انرژی</div>
     <button class="bt" id="bp"></button></div>
   <div class="c"><b>سرعت پر شدن انرژی</b><div class="m">سطح <span id="lr"></span> — هر ثانیه <span id="rr"></span> انرژی</div>
     <button class="bt" id="br"></button></div>
@@ -66,6 +66,11 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
   <div style="height:20px"></div>
 </div>
 
+<div class="pg" id="p4">
+  <h1>ماموریت‌ها</h1>
+  <div class="c"><b>به‌زودی</b><div class="m">ماموریت‌ها به‌زودی اضافه می‌شوند</div></div>
+</div>
+
 <div class="pg" id="p2">
   <h1>دوستان</h1>
   <div class="c"><b>کد دعوت تو</b>
@@ -73,7 +78,10 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
     <div class="m">دوستانت با کد تو وارد بازی شوند</div>
     <div class="m">تعداد دعوت‌شده‌ها: <span id="rc">۰</span> نفر</div>
     <button class="bt" id="cp">کپی</button></div>
-  <div class="c"><b>زیرمجموعه‌ها</b><div class="m">به‌زودی</div></div>
+  <div class="c"><b>زیرمجموعه‌ها</b>
+    <div class="m">تعداد: <span id="sc">۰</span> نفر</div>
+    <div id="sl"></div></div>
+  <div style="height:20px"></div>
 </div>
 
 <div class="pg" id="p3">
@@ -86,6 +94,7 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
 <div id="nav">
   <button class="on" data-p="0"><span>🧱</span>بازی</button>
   <button data-p="1"><span>⚡</span>ارتقا</button>
+  <button data-p="4"><span>🎯</span>ماموریت‌ها</button>
   <button data-p="2"><span>👥</span>دوستان</button>
   <button data-p="3"><span>👛</span>کیف پول</button>
 </div>
@@ -96,8 +105,9 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
 window.onerror=function(m,u,l){document.body.insertAdjacentHTML('afterbegin','<div style="color:red;font-size:12px;direction:ltr">'+m+' (line '+l+')</div>')};
 try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(x){}
 var KEY='bricky_d2';
-var D={s:0,p:1,r:1,b3:null,b6:null,l3:'',l6:'',ref:0},M=100,e=100;
+var D={s:0,p:1,r:1,b3:null,b6:null,l3:'',l6:'',subs:[]},M=100,e=100;
 try{var o=JSON.parse(localStorage.getItem(KEY));if(o)D=Object.assign(D,o)}catch(x){}
+if(!Array.isArray(D.subs))D.subs=[];
 function $(i){return document.getElementById(i)}
 function fa(n){return Math.floor(n).toLocaleString('fa')}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(x){}}
@@ -133,16 +143,18 @@ function bc(k){
 function render(){
   $('s').textContent=fa(D.s);$('s1').textContent=fa(D.s);
   $('e').style.width=(e/M*100)+'%';$('et').textContent=fa(e)+' / '+fa(M);
-  $('lp').textContent=fa(D.p);$('pp').textContent=fa(D.p);
+  $('lp').textContent=fa(D.p);$('pp').textContent=fa(D.p);$('pe').textContent=fa(D.p);
   $('lr').textContent=fa(D.r);$('rr').textContent=fa(D.r);
   $('bp').textContent='ارتقا: '+fa(costP())+' آجر';$('bp').className='bt'+(D.s<costP()?' off':'');
   $('br').textContent='ارتقا: '+fa(costR())+' آجر';$('br').className='bt'+(D.s<costR()?' off':'');
-  $('rc').textContent=fa(D.ref||0);
+  var n=D.subs.length;
+  $('rc').textContent=fa(n);$('sc').textContent=fa(n);
+  $('sl').innerHTML=n?D.subs.map(function(x){return '<div class="m">👤 '+String(x).replace(/[<>&]/g,'')+'</div>'}).join(''):'<div class="m">هنوز کسی دعوت نشده</div>';
   rb('b3');rb('b6');
 }
 
 $('b').addEventListener('pointerdown',function(ev){
-  if(e<1)return;e--;D.s+=D.p;save();render();
+  if(e<D.p)return;e-=D.p;D.s+=D.p;save();render();
   var w=$('w'),p=w.getBoundingClientRect(),f=document.createElement('div');
   f.className='f';f.textContent='+'+fa(D.p);
   f.style.left=(ev.clientX-p.left)+'px';f.style.top=(ev.clientY-p.top)+'px';
