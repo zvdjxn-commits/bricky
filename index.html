@@ -2,13 +2,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>بریکی</title>
 <style>
-:root{--bg:#1f1710;--fg:#fbeedd;--mut:#b9a58f;--acc:#f5a524;--card:#2d2218;--trk:#3d2e20}
+:root{--bg:#1f1710;--fg:#fbeedd;--mut:#b9a58f;--acc:#ff7a45;--card:#2d2218;--trk:#3d2e20}
 html,body{height:100%;margin:0}
 body{box-sizing:border-box;background:var(--bg);color:var(--fg);font-family:system-ui,Tahoma,sans-serif;padding:12px 16px 0;text-align:center}
 h1{font-size:20px;margin:6px 0;font-weight:500}
 .pg{display:none;height:calc(100% - 72px - env(safe-area-inset-bottom,0px))}
 .pg.on{display:block;overflow-y:auto}
-#p0.on{display:flex;flex-direction:column;align-items:center}
+#p0.on{display:flex;flex-direction:column;align-items:center;justify-content:center}
 .m{color:var(--mut);font-size:14px;margin:4px 0}
 #s{font-size:48px;font-weight:500;line-height:1}
 #w{position:relative;width:240px;height:220px;margin:14px auto}
@@ -34,13 +34,18 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
   <div><div id="s">0</div><div class="m">آجر</div></div>
   <div id="w"><button id="b" aria-label="تپ">
     <svg viewBox="0 0 240 220" width="240" height="220">
-      <rect x="20" y="30" width="200" height="160" rx="18" fill="#c4552d"/>
-      <rect x="20" y="30" width="200" height="40" rx="18" fill="#d9673b"/>
-      <rect x="30" y="85" width="85" height="40" rx="6" fill="#a9421f"/>
-      <rect x="125" y="85" width="85" height="40" rx="6" fill="#a9421f"/>
-      <rect x="30" y="135" width="40" height="40" rx="6" fill="#a9421f"/>
-      <rect x="80" y="135" width="85" height="40" rx="6" fill="#a9421f"/>
-      <rect x="175" y="135" width="35" height="40" rx="6" fill="#a9421f"/>
+      <rect x="45" y="30" width="40" height="46" rx="6" fill="#e8632c"/>
+      <rect x="100" y="30" width="40" height="46" rx="6" fill="#e8632c"/>
+      <rect x="155" y="30" width="40" height="46" rx="6" fill="#e8632c"/>
+      <rect x="20" y="66" width="200" height="136" rx="30" fill="#ff7a45" stroke="#c4552d" stroke-width="4"/>
+      <rect x="24" y="170" width="192" height="28" rx="14" fill="#e8632c"/>
+      <circle cx="90" cy="112" r="18" fill="#2b2b2b"/>
+      <circle cx="150" cy="112" r="18" fill="#2b2b2b"/>
+      <circle cx="96" cy="106" r="5" fill="#fff"/>
+      <circle cx="156" cy="106" r="5" fill="#fff"/>
+      <ellipse cx="62" cy="136" rx="16" ry="9" fill="#ff8fb1"/>
+      <ellipse cx="178" cy="136" rx="16" ry="9" fill="#ff8fb1"/>
+      <path d="M105 134 Q120 150 135 134" fill="none" stroke="#2b2b2b" stroke-width="4" stroke-linecap="round"/>
     </svg></button></div>
   <div class="t"><div id="e"></div></div>
   <div class="m">انرژی: <span id="et"></span></div>
