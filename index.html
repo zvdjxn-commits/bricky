@@ -48,18 +48,18 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
   <div class="t"><div id="e"></div></div>
   <div class="m">انرژی: <span id="et"></span></div>
 </div>
-
 <div class="pg" id="p1">
   <h1>ارتقا</h1>
   <div class="m">موجودی: <span id="s1"></span> آجر</div>
-  <div class="c"><b>قدرت کلیک</b><div class="m">هر تپ آجر بیشتری می‌دهد. سطح <span id="lp"></span></div>
+  <div class="c"><b>قدرت کلیک</b><div class="m">سطح: <span id="lp"></span></div>
     <button class="bt" id="bp"></button></div>
-  <div class="c"><b>سرعت پر شدن انرژی</b><div class="m">انرژی سریع‌تر پر می‌شود. سطح <span id="lr"></span></div>
+  <div class="c"><b>سرعت پر شدن انرژی</b><div class="m">سطح: <span id="lr"></span></div>
     <button class="bt" id="br"></button></div>
-  <div class="c"><b>ربات کلیک خودکار</b><div class="m">تا ۳ ساعت برایت آجر جمع می‌کند. بعد از آن باید برداشت کنی.</div>
-    <div id="botinfo" class="m"></div>
-    <button class="bt" id="bb"></button></div>
+  <div class="c"><b>ربات ۳ ساعته</b><div id="b3i" class="m"></div><button class="bt" id="b3"></button></div>
+  <div class="c"><b>ربات ۶ ساعته</b><div id="b6i" class="m"></div><button class="bt" id="b6"></button></div>
 </div>
+
+
 
 <div class="pg" id="p2">
   <h1>دوستان</h1>
@@ -88,18 +88,44 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
 <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 <script>
 try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(x){}
-var D={s:0,p:1,r:1,bot:0,bt:0},M=100,e=100,BOT_MAX=10800;
+var D={s:0,p:1,r:1,bot:0,bt:0},M=100,e=100,BOT_MAX=10800;,b3:null,b6:null,l3:'',l6:''
 try{
   var o=JSON.parse(localStorage.getItem('bricky_v2'));
   if(o){D=Object.assign(D,o)}else{D.s=+localStorage.getItem('bricky_s')||0}
+
+
+
 }catch(x){}
+D.b3=D.b3||null;D.b6=D.b6||null;D.l3=D.l3||'';D.l6=D.l6||'';
 function $(i){return document.getElementById(i)}
 function fa(n){return Math.floor(n).toLocaleString('fa-IR')}
 function save(){try{localStorage.setItem('bricky_v2',JSON.stringify(D));localStorage.setItem('bricky_s',D.s)}catch(x){}}
 function costP(){return 100*Math.pow(2,D.p-1)}
 function costR(){return 150*Math.pow(2,D.r-1)}
-var COST_BOT=2000;
-function botCoins(){return D.bot?Math.min((Date.now()-D.bt)/1000,BOT_MAX):0}
+var BOTS={b3:{h:3,cost:1500,pay:1650,l:'l3'},b6:{h:6,cost:3000,pay:3150,l:'l6'}};
+function today(){return new Date().toDateString()}
+function rb(k){
+  var B=BOTS[k],bt=$(k),inf=$(k+'i'),st=D[k];
+  if(st){
+    var left=st+B.h*3600000-Date.now();
+    if(left>0){var m=Math.ceil(left/60000);
+      inf.textContent='در حال کار: '+Math.floor(m/60)+' ساعت و '+(m%60)+' دقیقه مانده';
+      bt.textContent='در حال کار...';bt.className='bt off';
+    }else{inf.textContent='آماده دریافت: '+fa(B.pay)+' آجر';
+      bt.textContent='دریافت';bt.className='bt';}
+  }else{
+    inf.textContent='خرج '+fa(B.cost)+' ← بعد از '+B.h+' ساعت '+fa(B.pay);
+    if(D[B.l]===today()){bt.textContent='فردا دوباره فعال می‌شود';bt.className='bt off'}
+    else{bt.textContent='فعال‌سازی: '+fa(B.cost)+' آجر';bt.className='bt'+(D.s<B.cost?' off':'')}
+  }
+}
+function bc(k){
+  var B=BOTS[k],st=D[k];
+  if(st){if(Date.now()-st<B.h*3600000)return;D.s+=B.pay;D[k]=null}
+  else{if(D[B.l]===today()||D.s<B.cost)return;D.s-=B.cost;D[k]=Date.now();D[B.l]=today()}
+  save();render();
+}
+
 
 function render(){
   $('s').textContent=fa(D.s);$('s1').textContent=fa(D.s);
@@ -107,14 +133,14 @@ function render(){
   $('lp').textContent=fa(D.p);$('lr').textContent=fa(D.r);
   $('bp').textContent='ارتقا: '+fa(costP())+' آجر';$('bp').className='bt'+(D.s<costP()?' off':'');
   $('br').textContent='ارتقا: '+fa(costR())+' آجر';$('br').className='bt'+(D.s<costR()?' off':'');
-  if(D.bot){
-    var c=botCoins();
-    $('botinfo').textContent='آماده برداشت: '+fa(c)+' آجر'+(c>=BOT_MAX?' (پر شد)':'');
-    $('bb').textContent='برداشت';$('bb').className='bt'+(c<1?' off':'');
-  }else{
-    $('botinfo').textContent='';
-    $('bb').textContent='خرید: '+fa(COST_BOT)+' آجر';$('bb').className='bt'+(D.s<COST_BOT?' off':'');
-  }
+  
+    
+    
+    
+  
+    
+    
+rb('b3');rb('b6');
 }
 
 $('b').addEventListener('pointerdown',function(ev){
@@ -127,11 +153,12 @@ $('b').addEventListener('pointerdown',function(ev){
 
 $('bp').onclick=function(){if(D.s<costP())return;D.s-=costP();D.p++;save();render()};
 $('br').onclick=function(){if(D.s<costR())return;D.s-=costR();D.r++;save();render()};
-$('bb').onclick=function(){
-  if(!D.bot){if(D.s<COST_BOT)return;D.s-=COST_BOT;D.bot=1;D.bt=Date.now()}
-  else{var c=Math.floor(botCoins());if(c<1)return;D.s+=c;D.bt=Date.now()}
-  save();render();
-};
+$('b3').onclick=function(){bc('b3')};
+$('b6').onclick=function(){bc('b6')};
+  
+  
+  
+
 
 var uid;try{uid=Telegram.WebApp.initDataUnsafe.user.id}catch(x){}
 if(!uid){try{uid=localStorage.getItem('bricky_uid');if(!uid){uid=Math.floor(Math.random()*9e6+1e6);localStorage.setItem('bricky_uid',uid)}}catch(x){uid=1000000}}
