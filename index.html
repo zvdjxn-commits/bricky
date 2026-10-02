@@ -1,30 +1,30 @@
-
+<!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>بریکی</title>
 <style>
-:root{--bg:#1f1710;--fg:#fbeedd;--mut:#b9a58f;--card:#2d2218;--acc:#FF7A45;--trac:#3a2c20}
+:root{--bg:#1f1710;--fg:#fbeedd;--mut:#b9a58f;--acc:#f5a524;--card:#2d2218;--trk:#3d2e20}
 html,body{height:100%;margin:0}
-body{box-sizing:border-box;background:var(--bg);color:var(--fg);font-family:system-ui,Tahoma,sans-serif;text-align:center;padding-top:env(safe-area-inset-top,0px);overflow:hidden}
+body{box-sizing:border-box;background:var(--bg);color:var(--fg);font-family:system-ui,Tahoma,sans-serif;padding:12px 16px 0;text-align:center}
 h1{font-size:20px;margin:6px 0;font-weight:500}
-.pg{display:none;height:calc(100% - 72px - env(safe-area-inset-bottom,0px));overflow-y:auto;padding:8px 16px;box-sizing:border-box}
-#p0.on{display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .pg.on{display:block;overflow-y:auto}
-.m{color:var(--mut);font-size:14px}
+.pg{display:none;height:calc(100% - 72px - env(safe-area-inset-bottom,0px))}
+.pg.on{display:block;overflow-y:auto}
+#p0.on{display:flex;flex-direction:column;align-items:center}
+.m{color:var(--mut);font-size:14px;margin:4px 0}
 #s{font-size:48px;font-weight:500;line-height:1}
-#w{position:relative;width:240px;height:220px;margin:10px auto}
-#b{all:unset;cursor:pointer;display:block;width:240px;height:220px;-webkit-tap-highlight-color:transparent}
+#w{position:relative;width:240px;height:220px;margin:14px auto}
+#b{all:unset;cursor:pointer;display:block;width:240px;height:220px;touch-action:manipulation}
 #b:active{transform:scale(.92)}
 .f{position:absolute;font-size:24px;font-weight:500;color:var(--acc);pointer-events:none;animation:up .8s forwards}
 @keyframes up{to{transform:translateY(-80px);opacity:0}}
-.t{width:240px;height:14px;background:var(--trac);border-radius:7px;margin:8px auto;overflow:hidden}
-#e{height:100%;width:100%;background:var(--acc);border-radius:7px}
-.c{background:var(--card);border-radius:14px;padding:14px;margin:10px 0;text-align:right}
+.t{width:240px;height:14px;background:var(--trk);border-radius:8px;margin:8px auto;overflow:hidden}
+#e{height:100%;width:100%;background:var(--acc)}
+.c{background:var(--card);border-radius:14px;padding:14px;margin:10px 0}
 .c b{font-weight:500}
-.bt{all:unset;cursor:pointer;display:inline-block;background:var(--acc);color:#1f1710;border-radius:10px;padding:8px 16px;font-size:14px;margin-top:8px}
+.bt{all:unset;cursor:pointer;display:inline-block;margin-top:8px;padding:10px 16px;border-radius:10px;background:var(--acc);color:#1f1710;font-weight:500}
 .bt.off{opacity:.4}
-#ton-connect{min-height:44px;direction:ltr;margin:14px 0}
+#ton-connect{min-height:44px;direction:ltr;margin:10px 0}
 #nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);padding-bottom:env(safe-area-inset-bottom,0px)}
-#nav button{all:unset;cursor:pointer;flex:1;padding:10px 0;font-size:12px;color:var(--mut);text-align:center;-webkit-tap-highlight-color:transparent}
+#nav button{all:unset;cursor:pointer;flex:1;padding:10px 0;font-size:12px;color:var(--mut);text-align:center}
 #nav button span{display:block;font-size:22px}
 #nav button.on{color:var(--acc)}
 </style></head><body>
@@ -34,47 +34,48 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
   <div><div id="s">0</div><div class="m">آجر</div></div>
   <div id="w"><button id="b" aria-label="تپ">
     <svg viewBox="0 0 240 220" width="240" height="220">
-      <rect x="45" y="30" width="40" height="46" rx="8" fill="#E8622C"/>
-      <rect x="100" y="30" width="40" height="46" rx="8" fill="#E8622C"/>
-      <rect x="155" y="30" width="40" height="46" rx="8" fill="#E8622C"/>
-      <rect x="20" y="66" width="200" height="134" rx="26" fill="#FF7A45" stroke="#C24F1F" stroke-width="4"/>
-      <rect x="24" y="170" width="192" height="28" rx="14" fill="#E8622C"/>
-      <circle cx="90" cy="112" r="18" fill="#2b2b2b"/><circle cx="97" cy="105" r="5" fill="#fff"/>
-      <circle cx="150" cy="112" r="18" fill="#2b2b2b"/><circle cx="157" cy="105" r="5" fill="#fff"/>
-      <ellipse cx="62" cy="136" rx="16" ry="9" fill="#ffa0b4"/>
-      <ellipse cx="178" cy="136" rx="16" ry="9" fill="#ffa0b4"/>
-      <path d="M105 134 Q120 150 135 134" fill="none" stroke="#2b2b2b" stroke-width="5" stroke-linecap="round"/>
+      <rect x="20" y="30" width="200" height="160" rx="18" fill="#c4552d"/>
+      <rect x="20" y="30" width="200" height="40" rx="18" fill="#d9673b"/>
+      <rect x="30" y="85" width="85" height="40" rx="6" fill="#a9421f"/>
+      <rect x="125" y="85" width="85" height="40" rx="6" fill="#a9421f"/>
+      <rect x="30" y="135" width="40" height="40" rx="6" fill="#a9421f"/>
+      <rect x="80" y="135" width="85" height="40" rx="6" fill="#a9421f"/>
+      <rect x="175" y="135" width="35" height="40" rx="6" fill="#a9421f"/>
     </svg></button></div>
   <div class="t"><div id="e"></div></div>
   <div class="m">انرژی: <span id="et"></span></div>
 </div>
+
 <div class="pg" id="p1">
   <h1>ارتقا</h1>
   <div class="m">موجودی: <span id="s1"></span> آجر</div>
-  <div class="c"><b>قدرت کلیک</b><div class="m">سطح: <span id="lp"></span></div>
+  <div class="c"><b>قدرت کلیک</b><div class="m">سطح <span id="lp"></span> — هر تپ <span id="pp"></span> آجر</div>
     <button class="bt" id="bp"></button></div>
-  <div class="c"><b>سرعت پر شدن انرژی</b><div class="m">سطح: <span id="lr"></span></div>
+  <div class="c"><b>سرعت پر شدن انرژی</b><div class="m">سطح <span id="lr"></span> — هر ثانیه <span id="rr"></span> انرژی</div>
     <button class="bt" id="br"></button></div>
-  <div class="c"><b>ربات ۳ ساعته</b><div id="b3i" class="m"></div><button class="bt" id="b3"></button></div>
-  <div class="c"><b>ربات ۶ ساعته</b><div id="b6i" class="m"></div><button class="bt" id="b6"></button></div>
+  <div class="c"><b>ربات ۳ ساعته</b>
+    <div class="m" id="b3i"></div><button class="bt" id="b3"></button></div>
+  <div class="c"><b>ربات ۶ ساعته</b>
+    <div class="m" id="b6i"></div><button class="bt" id="b6"></button></div>
+  <div class="m">هر ربات روزی یک بار قابل فعال‌سازی است.</div>
+  <div style="height:20px"></div>
 </div>
-
-
 
 <div class="pg" id="p2">
   <h1>دوستان</h1>
   <div class="c"><b>کد دعوت تو</b>
-    <div id="code" style="font-size:28px;margin:8px 0;direction:ltr;text-align:center"></div>
-    <div class="m">این کد را به دوستانت بده تا با کد تو وارد بازی شوند.</div>
-    <button class="bt" id="cp">کپی کد</button></div>
-  <div class="c"><b>زیرمجموعه‌ها</b><div class="m">فعلاً ۰ نفر. شمارش و پاداش دعوت در مرحله‌ی بعد اضافه می‌شود.</div></div>
+    <div id="code" style="font-size:28px;margin:8px 0"></div>
+    <div class="m">دوستانت با کد تو وارد بازی شوند</div>
+    <div class="m">تعداد دعوت‌شده‌ها: <span id="rc">۰</span> نفر</div>
+    <button class="bt" id="cp">کپی</button></div>
+  <div class="c"><b>زیرمجموعه‌ها</b><div class="m">به‌زودی</div></div>
 </div>
 
 <div class="pg" id="p3">
   <h1>کیف پول</h1>
   <div id="ton-connect"></div>
   <div class="m" id="ws"></div>
-  <div class="c"><b>به‌زودی</b><div class="m">برداشت و تبدیل آجر به توکن در نسخه‌های بعدی اضافه می‌شود.</div></div>
+  <div class="c"><b>به‌زودی</b><div class="m">قابلیت‌های بیشتر اضافه می‌شود</div></div>
 </div>
 
 <div id="nav">
@@ -87,34 +88,33 @@ h1{font-size:20px;margin:6px 0;font-weight:500}
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 <script>
+window.onerror=function(m,u,l){document.body.insertAdjacentHTML('afterbegin','<div style="color:red;font-size:12px;direction:ltr">'+m+' (line '+l+')</div>')};
 try{Telegram.WebApp.ready();Telegram.WebApp.expand()}catch(x){}
-var D={s:0,p:1,r:1,bot:0,bt:0},M=100,e=100,BOT_MAX=10800;,b3:null,b6:null,l3:'',l6:''
-try{
-  var o=JSON.parse(localStorage.getItem('bricky_v2'));
-  if(o){D=Object.assign(D,o)}else{D.s=+localStorage.getItem('bricky_s')||0}
-
-
-
-}catch(x){}
-D.b3=D.b3||null;D.b6=D.b6||null;D.l3=D.l3||'';D.l6=D.l6||'';
+var KEY='bricky_d2';
+var D={s:0,p:1,r:1,b3:null,b6:null,l3:'',l6:'',ref:0},M=100,e=100;
+try{var o=JSON.parse(localStorage.getItem(KEY));if(o)D=Object.assign(D,o)}catch(x){}
 function $(i){return document.getElementById(i)}
-function fa(n){return Math.floor(n).toLocaleString('fa-IR')}
-function save(){try{localStorage.setItem('bricky_v2',JSON.stringify(D));localStorage.setItem('bricky_s',D.s)}catch(x){}}
+function fa(n){return Math.floor(n).toLocaleString('fa')}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(x){}}
 function costP(){return 100*Math.pow(2,D.p-1)}
 function costR(){return 150*Math.pow(2,D.r-1)}
-var BOTS={b3:{h:3,cost:1500,pay:1650,l:'l3'},b6:{h:6,cost:3000,pay:3150,l:'l6'}};
 function today(){return new Date().toDateString()}
+var BOTS={b3:{h:3,cost:1500,pay:1650,l:'l3'},b6:{h:6,cost:3000,pay:3150,l:'l6'}};
+
 function rb(k){
   var B=BOTS[k],bt=$(k),inf=$(k+'i'),st=D[k];
   if(st){
     var left=st+B.h*3600000-Date.now();
-    if(left>0){var m=Math.ceil(left/60000);
-      inf.textContent='در حال کار: '+Math.floor(m/60)+' ساعت و '+(m%60)+' دقیقه مانده';
+    if(left>0){
+      var m=Math.ceil(left/60000);
+      inf.textContent='در حال کار: '+fa(Math.floor(m/60))+' ساعت و '+fa(m%60)+' دقیقه مانده';
       bt.textContent='در حال کار...';bt.className='bt off';
-    }else{inf.textContent='آماده دریافت: '+fa(B.pay)+' آجر';
-      bt.textContent='دریافت';bt.className='bt';}
+    }else{
+      inf.textContent='آماده دریافت: '+fa(B.pay)+' آجر';
+      bt.textContent='دریافت';bt.className='bt';
+    }
   }else{
-    inf.textContent='خرج '+fa(B.cost)+' ← بعد از '+B.h+' ساعت '+fa(B.pay);
+    inf.textContent='خرج '+fa(B.cost)+' آجر ← بعد از '+fa(B.h)+' ساعت '+fa(B.pay)+' آجر';
     if(D[B.l]===today()){bt.textContent='فردا دوباره فعال می‌شود';bt.className='bt off'}
     else{bt.textContent='فعال‌سازی: '+fa(B.cost)+' آجر';bt.className='bt'+(D.s<B.cost?' off':'')}
   }
@@ -125,22 +125,15 @@ function bc(k){
   else{if(D[B.l]===today()||D.s<B.cost)return;D.s-=B.cost;D[k]=Date.now();D[B.l]=today()}
   save();render();
 }
-
-
 function render(){
   $('s').textContent=fa(D.s);$('s1').textContent=fa(D.s);
   $('e').style.width=(e/M*100)+'%';$('et').textContent=fa(e)+' / '+fa(M);
-  $('lp').textContent=fa(D.p);$('lr').textContent=fa(D.r);
+  $('lp').textContent=fa(D.p);$('pp').textContent=fa(D.p);
+  $('lr').textContent=fa(D.r);$('rr').textContent=fa(D.r);
   $('bp').textContent='ارتقا: '+fa(costP())+' آجر';$('bp').className='bt'+(D.s<costP()?' off':'');
   $('br').textContent='ارتقا: '+fa(costR())+' آجر';$('br').className='bt'+(D.s<costR()?' off':'');
-  
-    
-    
-    
-  
-    
-    
-rb('b3');rb('b6');
+  $('rc').textContent=fa(D.ref||0);
+  rb('b3');rb('b6');
 }
 
 $('b').addEventListener('pointerdown',function(ev){
@@ -155,21 +148,18 @@ $('bp').onclick=function(){if(D.s<costP())return;D.s-=costP();D.p++;save();rende
 $('br').onclick=function(){if(D.s<costR())return;D.s-=costR();D.r++;save();render()};
 $('b3').onclick=function(){bc('b3')};
 $('b6').onclick=function(){bc('b6')};
-  
-  
-  
 
-
-var uid;try{uid=Telegram.WebApp.initDataUnsafe.user.id}catch(x){}
-if(!uid){try{uid=localStorage.getItem('bricky_uid');if(!uid){uid=Math.floor(Math.random()*9e6+1e6);localStorage.setItem('bricky_uid',uid)}}catch(x){uid=1000000}}
+var uid;
+try{uid=Telegram.WebApp.initDataUnsafe.user.id}catch(x){}
+if(!uid){try{uid=localStorage.getItem('bricky_uid');if(!uid){uid=Math.floor(Math.random()*900000+100000);localStorage.setItem('bricky_uid',uid)}}catch(x){uid=123456}}
 $('code').textContent='B'+uid;
-$('cp').onclick=function(){try{navigator.clipboard.writeText('B'+uid);$('cp').textContent='کپی شد'}catch(x){}};
+$('cp').onclick=function(){try{navigator.clipboard.writeText('B'+uid);$('cp').textContent='کپی شد ✅'}catch(x){}};
 
 var tabs=document.querySelectorAll('#nav button');
 tabs.forEach(function(t){t.onclick=function(){
-  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on')});
+  document.querySelectorAll('.pg').forEach(function(g){g.classList.remove('on')});
   tabs.forEach(function(x){x.classList.remove('on')});
-  $('p'+t.dataset.p).classList.add('on');t.classList.add('on');render();
+  $('p'+t.dataset.p).classList.add('on');t.classList.add('on');
 }});
 
 setInterval(function(){if(e<M){e=Math.min(M,e+D.r)}render()},1000);
@@ -177,6 +167,6 @@ render();
 
 try{
   var tc=new TON_CONNECT_UI.TonConnectUI({manifestUrl:'https://zvdjxn-commits.github.io/bricky/tonconnect-manifest.json',buttonRootId:'ton-connect'});
-  tc.onStatusChange(function(wl){$('ws').textContent=wl?'✓ کیف پول وصل شد':''});
+  tc.onStatusChange(function(wl){$('ws').textContent=wl?'کیف پول متصل شد ✅':'کیف پول وصل نیست'});
 }catch(x){}
 </script></body></html>
